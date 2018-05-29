@@ -1,0 +1,8 @@
+<div class="row">
+	<button class="btn btn-primary" [disabled]="indexBuffer==0" (click)="prevDogs()">poprzednie</button>
+	<div *ngFor="let dog of generalService.dogs.slice(1+(indexBuffer*3),4+(indexBuffer*3))">
+		<DogThumbnailComponent [dog]="dog"></DogThumbnailComponent>
+	</div>
+	<button class="btn btn-primary" [disabled]="indexBuffer==2" (click)="nextDogs()">następne</button>
+
+</div>

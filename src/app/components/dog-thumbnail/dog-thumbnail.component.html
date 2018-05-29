@@ -1,0 +1,8 @@
+<div class="card" style="width: 18rem;">
+  <img *ngIf="dog.photos" class="card-img-top" src="{{'assets/images/'+dog.photos[0]}}" alt="Pies">
+  <div class="card-body">
+    <h5 class="card-title">{{dog.dogName}}</h5>
+    <p class="card-text">{{dog.description}}</p>
+    <a class="nav-link active" routerLink="{{'/dog/'+dog.id}}">Więcej informacji</a>
+  </div>
+</div>

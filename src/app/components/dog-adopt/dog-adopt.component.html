@@ -1,0 +1,36 @@
+<div>
+<div *ngIf="dog">
+	<h3>{{dog.dogName}}</h3>
+
+	<img *ngFor="let photo of dog.photos" class="w-50" src="{{'assets/images/'+photo}}" alt="Piesek">
+
+	<h5>O Psie:</h5>
+	<p>{{dog.description}}</p>
+
+	<h5>Rasa: {{dog.race.name}}</h5>
+	<p>{{dog.race.description}}</p>
+
+
+
+
+<form class="form-group" (ngSubmit)="adoptButton()">
+	<h5>Formularz Adopcji</h5>
+	<label for="email">Numer Telefonu</label>
+	<input class="form-control" [(ngModel)]="telephone" name="telephone" type="number" id="telepgone" required  placeholder="000000000">
+
+
+	<label for="firstname">Jakie jest doświadczenie Pana/Pani ze zwierzętami?</label>
+	<input class="form-control" [(ngModel)]="firstname" name="firstname"  type="text" id="firstname" required minlength=3 placeholder="..">
+
+	<label for="firstname">Czy ma Pan/Pani w tym momencie zwierzęta? Jeśli tak to jakie?</label>
+	<input class="form-control" [(ngModel)]="firstname" name="firstname"  type="text" id="firstname" required minlength=3 placeholder="...">
+
+	<label for="firstname">Jakie są Pana/Pani warunki mieszkaniowe?</label>
+	<input class="form-control" [(ngModel)]="firstname" name="firstname"  type="text" id="firstname" required minlength=3 placeholder="...">
+
+
+	<button class="btn btn-primary mb-2"  type="submit" >Rejestruj</button>
+</form>
+
+
+</div>

@@ -1,0 +1,62 @@
+<div class="m-2">
+	<div>
+  <h3>Rejestracja</h3>
+	<form class="form-group" #registerForm="ngForm" *ngIf="!authService.info" (ngSubmit)="registerButton()">
+		<label for="email">E-Mail</label>
+		<input class="form-control" [(ngModel)]="email" name="email" type="email" id="email" #emailModel="ngModel" email required  placeholder="user@mail.com">
+		<div *ngIf="emailModel.errors && (emailModel.dirty || emailModel.touched)" class="alert alert-danger">
+			<span [hidden]="!emailModel.errors.required">Pole wymagane. </span>
+			<span [hidden]="!emailModel.errors?.email">Podany adres jest niepoprawny.</span>
+		</div>
+
+		<label for="firstname">Imię</label>
+		<input class="form-control" [(ngModel)]="firstname" name="firstname" #firstnameModel="ngModel" type="text" id="firstname" required minlength=3 placeholder="Jan">
+		<div *ngIf="firstnameModel.errors && (firstnameModel.dirty || firstnameModel.touched)" class="alert alert-danger">
+			<span [hidden]="!firstnameModel.errors.required">Pole wymagane. </span>
+			<span [hidden]="!firstnameModel.errors.minlength">Przynajmniej 3 znaki wymagane</span>
+		</div>
+
+
+		<label for="lastname">Nazwisko</label>
+		<input class="form-control" [(ngModel)]="lastname" name="lastname" type="text" id="lastname" #lastnameModel="ngModel" required minlength=3 placeholder="Kowalski">
+		<div *ngIf="lastnameModel.errors && (lastnameModel.dirty || lastnameModel.touched)" class="alert alert-danger">
+			<span [hidden]="!lastnameModel.errors.required">Pole wymagane. </span>
+			<span [hidden]="!lastnameModel.errors.minlength">Przynajmniej 3 znaki wymagane</span>
+		</div>
+
+
+		<label for="address">Adres</label>
+		<input class="form-control" [(ngModel)]="address" name="address" type="text" id="address" #addressModel="ngModel" required minlength=8 placeholder="Warszawa, ul. Słoneczna 5">
+		<div *ngIf="addressModel.errors && (addressModel.dirty || addressModel.touched)" class="alert alert-danger">
+			<span [hidden]="!addressModel.errors.required">Pole wymagane. </span>
+			<span [hidden]="!addressModel.errors.minlength">Przynajmniej 8 znaków wymaganych</span>
+		</div>
+
+		<label for="password">Hasło</label>
+		<input class="form-control" [(ngModel)]="password" name="password" type="password" id="password" #passwordModel="ngModel" required [pattern]="passPattern">
+		<div *ngIf="passwordModel.errors && (passwordModel.dirty || passwordModel.touched)" class="alert alert-danger">
+			<span [hidden]="!passwordModel.errors.required">Pole wymagane. </span>
+			<span [hidden]="!passwordModel.errors.pattern">Hasło powinno zawierać między 8 a 32 znaki alfanumeryczne, w tym przynajmniej jedą dużą i małą literę oraz cyfrę</span>
+		</div>
+
+		<label for="passwordRepeat">Powtórz hasło</label>
+		<input class="form-control" [(ngModel)]="passwordRepeat" name="passwordRepeat" type="password" id="passwordRepeat" #passwordRModel="ngModel" required >
+		<div *ngIf="((passwordRModel.errors && passwordRModel.dirty || passwordRModel.touched) || (passwordRepeat!=password))" class="alert alert-danger">
+			<span [hidden]="!passwordRModel.errors?.required">Pole wymagane. </span>
+			<span [hidden]="passwordRepeat == password">Wprowadzone hasła różnią się</span>
+		</div>
+
+
+
+		<label for="province">Województwo</label>
+		<select class="form-control" id="provinces" required>
+			<option *ngFor="let province of provinces" [value]="province">{{province}}</option>
+		</select>
+
+
+		<button class="btn btn-primary mb-2" [disabled]="!registerForm.form.valid" type="submit" >Rejestruj</button>
+	</form>
+	<p *ngIf="authService.error">{{authService.error}}</p>
+	</div>
+	<p *ngIf="authService.info">{{authService.info}}</p>
+</div>
